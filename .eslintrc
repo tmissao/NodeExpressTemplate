@@ -13,10 +13,13 @@
         "error",
         "always"
       ],
+      "object-property-newline": "off",
       "no-magic-numbers" : ["error", {
         "ignoreArrayIndexes": true,
         "enforceConst": false
       }],
+      "one-var": "off",
+      "one-var-declaration-per-line": "off",
       "no-multi-str" : "off",
       "no-restricted-syntax": "off",
       "lodash/prop-shorthand" : "off",

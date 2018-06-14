@@ -1,10 +1,12 @@
 const controller = require('./controller');
-const DatabaseMock = require('../../spec/mocks/databaseMock');
+const DatabaseMock = require('../../spec/mocks/DatabaseMock');
+const ResponseMock = require('../../spec/mocks/ResponseMock');
+const ErrorMock = require('../../spec/mocks/ErrorMock');
 const { QGetById } = require('./queries');
 
 describe('Testing Users Controller', () => {
   const id = 5;
-  let database, conn, res, result;
+  let database, result;
 
   beforeEach(() => {
     result = {
@@ -15,18 +17,32 @@ describe('Testing Users Controller', () => {
     };
 
     database = new DatabaseMock().getDatabaseMock();
-    database.pushQueryObject(QGetById, [id], [result]);
-
-    res = {
-      send: jasmine.createSpy().and.callFake((output) => {
-        expect(result).toEqual(JSON.parse(output).data);
-      })
-    };
   });
 
   it('Simulating a successful getById Query', () => {
     const req = { params: { id } };
-    controller.getController(database).getById(req, res, {});
 
+    const res = new ResponseMock((output) => {
+      expect(result).toEqual(JSON.parse(output).data);
+    }).getMock();
+
+    database.pushQueryObject(QGetById, [id], [result]);
+
+    controller.getController(database).getById(req, res, {});
+  });
+
+  it('Simulating a database error', (done) => {
+    const req = { params: { id } };
+
+    const res = new ResponseMock((output) => {
+      expect(result).toEqual(JSON.parse(output).data);
+    }).getMock();
+
+    const next = new ErrorMock((err) => {
+      expect(err).toEqual(jasmine.any(Error));
+      done();
+    }).getMock();
+
+    controller.getController(database).getById(req, res, next);
   });
 });
