@@ -3,7 +3,6 @@ class DatabaseMock {
     this._queryObjects = [];
     this._conn = {
       query: jasmine.createSpy().and.callFake((query, params, callback) => {
-
         for (let i = 0; i < this._queryObjects.length; i++) {
           const queryObject = this._queryObjects[i];
           const queryEquals = queryObject.query === query;
