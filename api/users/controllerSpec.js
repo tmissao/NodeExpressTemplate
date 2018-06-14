@@ -1,4 +1,5 @@
 const controller = require('./controller');
+const DatabaseMock = require('../../spec/mocks/databaseMock');
 const { QGetById } = require('./queries');
 
 describe('Testing Users Controller', () => {
@@ -13,33 +14,12 @@ describe('Testing Users Controller', () => {
       status: 1
     };
 
-    conn = {
-      query: jasmine.createSpy().and.callFake((query, params, callback) => {
-        if (query === QGetById && params[0] === id) {
-          return callback(null, [result]);
-        }
-        return callback(new Error());
-      })
-    };
-
-    database = {
-      getConnection: jasmine.createSpy().and.returnValue(Promise.resolve(conn)),
-      closeConnection: jasmine.createSpy(),
-      execute: jasmine.createSpy().and.callFake((connection, query, params) => {
-        return new Promise((resolve, reject) => {
-          connection.query(query, params, (err, rows) => {
-            if (err) { return reject(err); }
-            return resolve(rows);
-          });
-        });
-      })
-    };
+    database = new DatabaseMock().getDatabaseMock();
+    database.pushQueryObject(QGetById, [id], [result]);
 
     res = {
       send: jasmine.createSpy().and.callFake((output) => {
         expect(result).toEqual(JSON.parse(output).data);
-        expect(database.getConnection.calls.argsFor(0)).toEqual([true]);
-        expect(conn.query).toHaveBeenCalledWith(QGetById, [id], jasmine.any(Function));
       })
     };
   });
@@ -47,5 +27,6 @@ describe('Testing Users Controller', () => {
   it('Simulating a successful getById Query', () => {
     const req = { params: { id } };
     controller.getController(database).getById(req, res, {});
+
   });
 });

@@ -10,7 +10,6 @@ const _getById = async (req, res, next, database) => {
     const result = await database.execute(conn, QGetById, [id]);
     res.send(JSON.stringify({ success: true, data: result[0] }));
   } catch (err) {
-    console.error(err);
     next(err);
   } finally {
     database.closeConnection(conn);

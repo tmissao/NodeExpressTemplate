@@ -18,6 +18,7 @@
         "enforceConst": false
       }],
       "no-multi-str" : "off",
+      "no-restricted-syntax": "off",
       "lodash/prop-shorthand" : "off",
       "lodash/prefer-includes" : "off",
       "lodash/no-single-chain" : "off",
@@ -45,4 +46,3 @@
       ]
     }
   }
-  
