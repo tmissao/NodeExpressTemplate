@@ -4,7 +4,8 @@ class ErrorMock {
   }
 
   getMock() {
-    return jasmine.createSpy().and.callFake(this._callback);
+    return this._callback ? jasmine.createSpy().and.callFake(this._callback)
+      : jasmine.createSpy();
   }
 }
 

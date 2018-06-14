@@ -22,13 +22,16 @@ describe('Testing Users Controller', () => {
   it('Simulating a successful getById Query', () => {
     const req = { params: { id } };
 
+    const next = new ErrorMock().getMock();
+
     const res = new ResponseMock((output) => {
       expect(result).toEqual(JSON.parse(output).data);
+      expect(next.calls.any()).toEqual(false);
     }).getMock();
 
     database.pushQueryObject(QGetById, [id], [result]);
 
-    controller.getController(database).getById(req, res, {});
+    controller.getController(database).getById(req, res, next);
   });
 
   it('Simulating a database error', (done) => {
@@ -39,6 +42,7 @@ describe('Testing Users Controller', () => {
     }).getMock();
 
     const next = new ErrorMock((err) => {
+      expect(res.send.calls.any()).toEqual(false);
       expect(err).toEqual(jasmine.any(Error));
       done();
     }).getMock();

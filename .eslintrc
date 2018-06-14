@@ -18,6 +18,7 @@
         "ignoreArrayIndexes": true,
         "enforceConst": false
       }],
+      "lodash/prefer-noop": "off",
       "one-var": "off",
       "one-var-declaration-per-line": "off",
       "no-multi-str" : "off",
