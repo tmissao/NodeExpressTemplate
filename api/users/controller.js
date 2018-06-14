@@ -2,15 +2,18 @@ const { QGetById } = require('./queries');
 
 const _getById = async (req, res, next, database) => {
   const { id } = req.params;
+
   let conn = null;
 
   try {
     conn = await database.getConnection(true);
     const result = await database.execute(conn, QGetById, [id]);
-    return res.send(JSON.stringify({ success: true, data: result[0] }));
+    res.send(JSON.stringify({ success: true, data: result[0] }));
   } catch (err) {
+    console.error(err);
+    next(err);
+  } finally {
     database.closeConnection(conn);
-    return next(err);
   }
 };
 
