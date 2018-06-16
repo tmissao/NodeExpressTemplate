@@ -7,24 +7,25 @@ const bodyParser = require('body-parser');
 const health = require('./api/health/router');
 const authorize = require('./lib/authorize');
 const users = require('./api/users/router');
+const auth = require('./api/auth/router');
 const output = require('./lib/output');
 
 const app = express();
 
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use((req, res, next) => { res.type('json'); next(); });
-app.use('/health', health);
-app.use('/users', users);
 
+app.use(health.path, health.router);
+app.use(auth.path, auth.router);
 
 // Authentication required URLs below
 app.use(authorize);
-
+app.use(users.path, users.router);
 app.use(output);
 
 module.exports = app;

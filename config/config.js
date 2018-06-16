@@ -1,7 +1,9 @@
 
 const config = {
   app: {
-    port: process.env.PORT
+    baseUrl: process.env.BASE_URL || 'http://localhost',
+    port: process.env.PORT || 3000,
+    getPath: (path) => `${config.app.baseUrl}:${config.app.port}${path}`
   },
   database: {
     host: process.env.MYSQL_HOST,
@@ -10,7 +12,13 @@ const config = {
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASS,
     database: process.env.MYSQL_DB
+  },
+  requestCodes: {
+    OK: 200,
+    BAD_REQUEST: 400,
+    NOT_AUTHORIZED: 401,
+    NOT_FOUND: 404
   }
-}
+};
 
 module.exports = config;

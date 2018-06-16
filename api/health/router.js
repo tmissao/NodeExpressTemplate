@@ -1,8 +1,10 @@
 const express = require('express');
 const controller = require('./controller');
 
+const PATH = '/health';
+
 const router = express.Router();
 
-router.get('/', controller.health);
+router.get('/', controller.getController().health);
 
-module.exports = router;
+module.exports = { path: PATH, router };

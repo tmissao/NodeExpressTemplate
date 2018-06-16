@@ -1,5 +1,10 @@
-const health = (req, res) => {
+const _health = (req, res) => {
   return res.send(JSON.stringify({ status: 'OK' }));
 };
 
-module.exports.health = health;
+const getController = () => ({
+  health: (req, res, next) => _health(req, res, next)
+});
+
+
+module.exports.getController = getController;
