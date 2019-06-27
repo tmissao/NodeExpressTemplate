@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const health = require('./api/health/router');
 const authorize = require('./lib/authorize');
-const users = require('./api/users/router');
 const auth = require('./api/auth/router');
 const output = require('./lib/output');
 
@@ -25,7 +24,6 @@ app.use(auth.path, auth.router);
 
 // Authentication required URLs below
 app.use(authorize);
-app.use(users.path, users.router);
 app.use(output);
 
 module.exports = app;
