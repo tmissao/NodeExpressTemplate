@@ -2,6 +2,7 @@ steps:
   - label: ":npm: installing dependencies"
     command:
       - npm install
+      - ls -al
     artifact_paths:
       - "./node_modules/*"
   
