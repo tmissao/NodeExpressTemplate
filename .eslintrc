@@ -15,10 +15,7 @@
         "always"
       ],
       "object-property-newline": "off",
-      "no-magic-numbers" : ["error", {
-        "ignoreArrayIndexes": true,
-        "enforceConst": false
-      }],
+      "no-magic-numbers" : "off",
       "lodash/prefer-noop": "off",
       "one-var": "off",
       "one-var-declaration-per-line": "off",
@@ -29,6 +26,7 @@
       "lodash/no-single-chain" : "off",
       "lodash/prefer-chain" : "off",
       "lodash/prefer-lodash-chain" : "off",
+      "consistent-return": "off",
       "no-sync" : "off",
       "lodash/prefer-lodash-method" : "off",
       "line-comment-position" : "off",

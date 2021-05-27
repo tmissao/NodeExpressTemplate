@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node ./bin/www",
-    "test": "node node_modules/jasmine/bin/jasmine"
+    "test": "node node_modules/jasmine/bin/jasmine",
+    "lint": "eslint ."
   },
   "keywords": [
     "express",
@@ -20,6 +21,7 @@
     "cors": "^2.8.4",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.1.1",
+    "mysql": "^2.18.1",
     "request": "^2.88.2"
   },
   "devDependencies": {

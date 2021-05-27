@@ -1,0 +1,14 @@
+steps:
+  - label: ":npm: installing dependencies"
+    command:
+      - npm install
+  
+  - wait
+
+  - label: ":eslint: linting"
+    command:
+      - npm run lint
+
+  - label: ":test_tube: testing"
+    command:
+      - npm run test
