@@ -3,8 +3,10 @@ steps:
     command:
       - npm install
       - ls -al
+      - echo "---------"
+      - ls -al ./node_modules
     artifact_paths:
-      - "node_modules/*"
+      - "./node_modules/"
   
   - wait
 
