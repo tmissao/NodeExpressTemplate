@@ -2,13 +2,19 @@ steps:
   - label: ":npm: installing dependencies"
     command:
       - npm install
+    artifact_paths:
+      - "./node_modules/*"
   
   - wait
 
   - label: ":eslint: linting"
     command:
+      - mkdir -p node_modules
+      - buildkite-agent artifact download "./node_modules/*" "node_modules" 
       - npm run lint
 
   - label: ":test_tube: testing"
     command:
+      - mkdir -p node_modules
+      - buildkite-agent artifact download "./node_modules/*" "node_modules" 
       - npm run test
