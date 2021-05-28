@@ -22,6 +22,7 @@ steps:
   - wait
   - trigger: "nodeexpresstemplate-release-dev"
     label: ":rocket: releasing dev"
+    async: true
     build:
       message: "${BUILDKITE_MESSAGE}"
       commit: "${BUILDKITE_COMMIT}"
