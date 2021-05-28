@@ -1,11 +1,20 @@
 env:
-  DOCKER_IMAGE_KEY: "docker-image-key"
+  DOCKER_IMAGE_REGISTRY_KEY: "docker-image-registry-key"
+  DOCKER_IMAGE_NAME_KEY: "docker-image-name-key"
+  DOCKER_IMAGE_TAG_KEY: "docker-image-tag-key"
 
 steps:
   - input: "Release Informations"
     fields:
-      - text: "Which Docker Image Version should deploy ?"
-        key: "${DOCKER_IMAGE_KEY}"
+      - text: "Which Registry Should Use ?"
+        key: "${DOCKER_IMAGE_REGISTRY_KEY}"
+        
+      - text: "Which Image Should Use ?"
+        key: "${DOCKER_IMAGE_NAME_KEY}" 
+
+      - text: "Which Image Tag Should Use ?"
+        key: "${DOCKER_IMAGE_TAG_KEY}" 
+
     if: "build.env('DOCKER_IMAGE') == null"
 
   - wait
@@ -13,4 +22,6 @@ steps:
   - command: ".buildkite/scripts/release.sh"
     env:
       DOCKER_IMAGE: "${DOCKER_IMAGE}"
-      DOCKER_IMAGE_KEY: "${DOCKER_IMAGE_KEY}"
+      DOCKER_IMAGE_REGISTRY_KEY: "${DOCKER_IMAGE_REGISTRY_KEY}"
+      DOCKER_IMAGE_NAME_KEY: "${DOCKER_IMAGE_NAME_KEY}"
+      DOCKER_IMAGE_TAG_KEY: "${DOCKER_IMAGE_TAG_KEY}"
