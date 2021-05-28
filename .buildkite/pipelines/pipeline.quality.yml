@@ -1,0 +1,8 @@
+steps:
+  - label: ":eslint: linting"
+    command:
+      - .buildkite/scripts/node-lint.sh
+
+  - label: ":test_tube: testing"
+    command:
+      - .buildkite/scripts/node-test.sh
