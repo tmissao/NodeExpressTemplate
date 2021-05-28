@@ -6,8 +6,6 @@ env:
 steps:
   - input: "Release Informations"
     fields:
-      - text: "Which Registry Should Use ?"
-        key: "${DOCKER_IMAGE_REGISTRY_KEY}"
         
       - text: "Which Image Should Use ?"
         key: "${DOCKER_IMAGE_NAME_KEY}" 

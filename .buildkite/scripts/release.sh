@@ -5,7 +5,6 @@ set -euo pipefail
 if [[ -z "$DOCKER_IMAGE" ]]; then
     echo "DOCKER_IMAGE EMPTY"
 
-    REGISTRY=$(buildkite-agent meta-data get $DOCKER_IMAGE_REGISTRY_KEY)
     IMAGE=$(buildkite-agent meta-data get $DOCKER_IMAGE_NAME_KEY)
     TAG=$(buildkite-agent meta-data get $DOCKER_IMAGE_TAG_KEY)
 
