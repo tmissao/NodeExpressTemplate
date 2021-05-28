@@ -3,7 +3,7 @@ steps:
     fields:
       - text: "Which Docker Image Version should deploy ?"
         key: "docker-image"
-    if: "build.env(DOCKER_IMAGE) == null"
+    if: "build.env(${DOCKER_IMAGE}) == null"
 
   - wait
 
