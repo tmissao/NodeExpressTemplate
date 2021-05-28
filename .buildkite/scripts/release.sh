@@ -19,3 +19,5 @@ fi
 echo "Releasing image: $DOCKER_IMAGE"
 
 docker pull $DOCKER_IMAGE
+
+echo "Success"
