@@ -37,7 +37,7 @@ steps:
         # BUILDKITE_PULL_REQUEST_REPO: "${BUILDKITE_PULL_REQUEST_REPO}"
         DOCKER_IMAGE: "${DOCKER_IMAGE}"
 
-  - label: ":question: release prod :question:"
+  - label: ":question: release prod"
     plugins:
       - chronotc/monorepo-diff#v2.0.4:
           env: 
