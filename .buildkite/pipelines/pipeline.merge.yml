@@ -13,15 +13,19 @@ steps:
         BUILDKITE_PULL_REQUEST: "${BUILDKITE_PULL_REQUEST}"
         BUILDKITE_PULL_REQUEST_BASE_BRANCH: "${BUILDKITE_PULL_REQUEST_BASE_BRANCH}"
         BUILDKITE_PULL_REQUEST_REPO: "${BUILDKITE_PULL_REQUEST_REPO}"
+        
   - wait
+
   - label: ":docker: Building"
     command:
       - .buildkite/scripts/docker-build.sh
     env:
        DOCKER_IMAGE: "${DOCKER_IMAGE}"
+
   - wait
-  - trigger: "nodeexpresstemplate-release-dev"
-    label: ":rocket: releasing dev"
+
+  - label: ":rocket: releasing dev"
+    trigger: "nodeexpresstemplate-release-dev"
     async: true
     build:
       message: "${BUILDKITE_MESSAGE}"
@@ -31,4 +35,23 @@ steps:
         BUILDKITE_PULL_REQUEST: "${BUILDKITE_PULL_REQUEST}"
         BUILDKITE_PULL_REQUEST_BASE_BRANCH: "${BUILDKITE_PULL_REQUEST_BASE_BRANCH}"
         BUILDKITE_PULL_REQUEST_REPO: "${BUILDKITE_PULL_REQUEST_REPO}"
-        DOCKER_IMAGE: "${DOCKER_IMAGE}" 
+        DOCKER_IMAGE: "${DOCKER_IMAGE}"
+
+  - label: ":rocket: releasing prd :fire:"
+    plugins:
+      - chronotc/monorepo-diff#v2.0.4:
+          diff: "git diff --name-only HEAD~1"
+          watch:
+            - path: "release"
+              config:
+                trigger: "nodeexpresstemplate-release-prd"
+                async: true
+                build:
+                  message: "${BUILDKITE_MESSAGE}"
+                  commit: "${BUILDKITE_COMMIT}"
+                  branch: "${BUILDKITE_BRANCH}"
+                  env:
+                    BUILDKITE_PULL_REQUEST: "${BUILDKITE_PULL_REQUEST}"
+                    BUILDKITE_PULL_REQUEST_BASE_BRANCH: "${BUILDKITE_PULL_REQUEST_BASE_BRANCH}"
+                    BUILDKITE_PULL_REQUEST_REPO: "${BUILDKITE_PULL_REQUEST_REPO}"
+                    DOCKER_IMAGE: "${DOCKER_IMAGE}"
