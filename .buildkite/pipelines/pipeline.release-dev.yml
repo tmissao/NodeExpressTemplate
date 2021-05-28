@@ -1,10 +1,16 @@
+env:
+  DOCKER_IMAGE_KEY: "docker-image-key"
+
 steps:
   - input: "Release Informations"
     fields:
       - text: "Which Docker Image Version should deploy ?"
-        key: "docker-image"
+        key: "${DOCKER_IMAGE_KEY}"
     if: "build.env('DOCKER_IMAGE') == null"
 
   - wait
 
-  - command: "ok should go! ${DOCKER_IMAGE}"
+  - command: ".buildkite/scripts/release.sh"
+    env:
+      DOCKER_IMAGE: "${DOCKER_IMAGE}"
+      DOCKER_IMAGE_KEY: "${DOCKER_IMAGE_KEY}"
