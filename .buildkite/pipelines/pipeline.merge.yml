@@ -12,4 +12,4 @@ steps:
   - wait
   - label: ":docker: Building"
     command:
-      - .buildkite/scripts/node-test.sh
+      - .buildkite/scripts/docker-build.sh
