@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+echo $DOCKER_IMAGE
+
 docker login -u $dockeruser -p $dockerpassword
-docker build -t $dockeruser/$APPLICATION:$BUILDKITE_BUILD_ID .
-docker push $dockeruser/$APPLICATION:$BUILDKITE_BUILD_ID
+docker build -t $DOCKER_IMAGE .
+docker push $DOCKER_IMAGE
