@@ -19,15 +19,15 @@ steps:
       - .buildkite/scripts/docker-build.sh
     env:
        DOCKER_IMAGE: "${DOCKER_IMAGE}"
-  # - wait
-  # - trigger: "nodeexpresstemplate-release-dev"
-  #   label: ":rocket:"
-  #   build:
-  #     message: "${BUILDKITE_MESSAGE}"
-  #     commit: "${BUILDKITE_COMMIT}"
-  #     branch: "${BUILDKITE_BRANCH}"
-  #     env:
-  #       BUILDKITE_PULL_REQUEST: "${BUILDKITE_PULL_REQUEST}"
-  #       BUILDKITE_PULL_REQUEST_BASE_BRANCH: "${BUILDKITE_PULL_REQUEST_BASE_BRANCH}"
-  #       BUILDKITE_PULL_REQUEST_REPO: "${BUILDKITE_PULL_REQUEST_REPO}"
-  #       DOCKER_TAG: 
+  - wait
+  - trigger: "nodeexpresstemplate-release-dev"
+    label: ":rocket:"
+    build:
+      message: "${BUILDKITE_MESSAGE}"
+      commit: "${BUILDKITE_COMMIT}"
+      branch: "${BUILDKITE_BRANCH}"
+      env:
+        BUILDKITE_PULL_REQUEST: "${BUILDKITE_PULL_REQUEST}"
+        BUILDKITE_PULL_REQUEST_BASE_BRANCH: "${BUILDKITE_PULL_REQUEST_BASE_BRANCH}"
+        BUILDKITE_PULL_REQUEST_REPO: "${BUILDKITE_PULL_REQUEST_REPO}"
+        DOCKER_IMAGE: "${DOCKER_IMAGE}" 
