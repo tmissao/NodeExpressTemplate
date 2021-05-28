@@ -7,4 +7,4 @@ steps:
 
   - wait
 
-  - command: "ok should go! $DOCKER_IMAGE"
+  - command: "ok should go! ${DOCKER_IMAGE}"
