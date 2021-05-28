@@ -4,7 +4,7 @@ const ErrorMock = require('../../spec/mocks/ErrorMock');
 
 describe('Testing Health Controller', () => {
   it('Successful Health', () => {
-    const result = { status: 'OK2' };
+    const result = { status: 'OK' };
     const req = {};
     const next = new ErrorMock().getMock();
     const res = new ResponseMock((output) => {
