@@ -13,3 +13,5 @@ steps:
   - label: ":docker: Building"
     command:
       - .buildkite/scripts/docker-build.sh
+    env:
+       APPLICATION: "hello-nodejs"
