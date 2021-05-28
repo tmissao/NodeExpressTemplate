@@ -8,7 +8,7 @@ if [[ -z "$DOCKER_IMAGE" ]]; then
     IMAGE=$(buildkite-agent meta-data get $DOCKER_IMAGE_NAME_KEY)
     TAG=$(buildkite-agent meta-data get $DOCKER_IMAGE_TAG_KEY)
 
-    if [[ -z "$REGISTRY" || -z "$IMAGE" || -z "$TAG" ]]; then
+    if [[-z "$IMAGE" || -z "$TAG" ]]; then
         echo "Wrong Docker Image: $REGISTRY/$IMAGE:$TAG"
         exit -1
     fi
