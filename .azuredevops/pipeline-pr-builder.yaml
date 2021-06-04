@@ -1,0 +1,23 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+name: pr-builder $(Date:yyyy-MM-dd)$(Rev:.r)
+
+stages:
+- stage: Quality
+
+  jobs:
+
+  - job: EnsureCodeQuality
+    steps:
+
+    - bash: npm install
+      displayName: Install Dependencies
+    
+    - bash: npm run test
+      displayName: Run Tests
+    
+    - bash: npm run lint
+      displayName: Run Lint
