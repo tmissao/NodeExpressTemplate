@@ -16,4 +16,4 @@ stages:
     jobs:
       - job: DockerBuild
         steps:
-          - script: docker build -t tmissao/hello-nodejs:${Build.BuildId}
+          - script: docker build -t tmissao/hello-nodejs:$(Build.BuildId)
