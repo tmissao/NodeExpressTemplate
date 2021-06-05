@@ -1,0 +1,26 @@
+trigger: none
+
+pool: Default
+
+resources:
+  pipelines:
+    - pipeline: source
+      source: merge
+      trigger:
+        branches:
+          - master
+          
+stages:
+  - stage: Deploy
+    jobs:
+    - deployment: DeployApplication
+      displayName: "Deploying Application on Production"
+      environment: 'production'
+      variables:
+        environment: 'production'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - template: templates/deploy.yml
+      
