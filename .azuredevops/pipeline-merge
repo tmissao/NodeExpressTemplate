@@ -1,0 +1,19 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+name: merge $(Date:yyyy-MM-dd)$(Rev:.r)
+
+trigger:
+  - master
+
+pool: Default
+
+stages:
+  - template: templates/ensure-quality.yml
+  - stage: Build
+    jobs:
+      - job: docker-build
+        steps:
+          - script: docker build -t tmissao/hello-nodejs:${Build.BuildId}
