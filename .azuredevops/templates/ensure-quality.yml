@@ -1,0 +1,16 @@
+stages:
+- stage: Quality
+
+  jobs:
+
+  - job: EnsureCodeQuality
+    steps:
+
+    - bash: npm install
+      displayName: Install Dependencies
+    
+    - bash: npm run test
+      displayName: Run Tests
+    
+    - bash: npm run lint
+      displayName: Run Lint
