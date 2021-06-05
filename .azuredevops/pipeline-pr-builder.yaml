@@ -5,6 +5,8 @@
 
 name: pr-builder $(Date:yyyy-MM-dd)$(Rev:.r)
 
+trigger: none
+
 pool: Default
 
 stages:
