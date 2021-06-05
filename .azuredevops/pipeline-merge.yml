@@ -14,6 +14,6 @@ stages:
   - template: templates/ensure-quality.yml
   - stage: Build
     jobs:
-      - job: docker-build
+      - job: DockerBuild
         steps:
           - script: docker build -t tmissao/hello-nodejs:${Build.BuildId}
