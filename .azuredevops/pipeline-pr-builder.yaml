@@ -9,6 +9,12 @@ trigger: none
 
 pool: Default
 
+resources:
+  pipelines:
+    - pipeline: 'SourcePipeline'
+      source: 'pipeline-merge'
+      trigger: true
+
 stages:
 - stage: Quality
 
