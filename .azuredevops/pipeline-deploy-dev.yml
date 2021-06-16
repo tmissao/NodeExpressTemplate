@@ -15,9 +15,9 @@ stages:
     jobs:
     - deployment: DeployApplication
       displayName: "Deploying Application on Develop"
-      environment: 'develop'
+      environment: 'demo-development'
       variables:
-        environment: 'demo-development'
+        environment: 'development'
       strategy:
         runOnce:
           deploy:
