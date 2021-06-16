@@ -17,7 +17,7 @@ stages:
       displayName: "Deploying Application on Develop"
       environment: 'develop'
       variables:
-        environment: 'develop'
+        environment: 'demo-development'
       strategy:
         runOnce:
           deploy:
