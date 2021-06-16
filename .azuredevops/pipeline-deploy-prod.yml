@@ -15,7 +15,7 @@ stages:
     jobs:
     - deployment: DeployApplication
       displayName: "Deploying Application on Production"
-      environment: 'production'
+      environment: 'demo-production'
       variables:
         environment: 'production'
       strategy:
